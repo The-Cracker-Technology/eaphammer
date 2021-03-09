@@ -1,0 +1,13 @@
+gevent>=1.5.0
+tqdm
+pem
+pyOpenSSL
+scapy
+lxml
+beautifulsoup4
+pyquery
+requests_html
+pywebcopy
+jinja2
+flask-cors
+flask-socketio

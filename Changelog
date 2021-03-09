@@ -1,0 +1,185 @@
+0.0.1 - Gabriel Ryan <gryan@gdssecurity.com>
+Initial release.
+
+0.0.2 - Gabriel Ryan <gryan@gdssecurity.com>
+Added Changelog.
+Added tqdm to pip.req file.
+Added python-pip to kali-dependencies.txt.
+Added version string to ./eaphammer
+Updated README to reflect changes.
+
+0.0.3 - Gabriel Ryan <gryan@gdssecurity.com>
+Removed submodules, updated setup.py to reflect this.
+
+0.0.4 - Gabriel Ryan <gryan@gdssecurity.com>
+Updated to use local copy of s0lst1c3/hostapd-eaphammer (hostapd-wpe without Cupid and Karma, uses latest openssl, uses hostapd-2.6)
+Moved version string from ./eaphammer to ./config.py.
+Updated kali-dependencies.txt.
+Updated setup.py.
+Updated README to reflect changes.
+
+0.0.5 - Gabriel Ryan <gryan@gdssecurity.com>
+Certs are now signed using sha256 to ensure compatibility with current versions of OpenSSL.
+wlan_clean() in core/utils.py now properly raises network interface after stopping NetworkManager.
+Updated version string in ./config.py.
+
+0.0.6 - Gabriel Ryan <gryan@gdssecurity.com>
+Added WPASupplicant service to core utilities.
+Eaphammer now stops wpa_supplicant service.
+Updated version string in ./config.py.
+
+0.0.7 - Gabriel Ryan <gryan@gdssecurity.com>
+Daemons now log to [project root]/logs directory.
+Dsniff's dnsspoof has been retired in favor dnsmasq.
+Integrated redirect server added for hostile portal attacks (see core/servers/redirect_server.py).
+Dnsmasq's config files are now managed by core.conf_manager.
+Dnsmasq DHCP Only and Captive Portal configurations have been improved.
+Responder now works swimmingly.
+Updated mainline logic for Captive Portal and Hostile Portal modes of operation (see eaphammer).
+Support for dnsmasq's dhcp-script option added.
+
+0.0.8 - Gabriel Ryan <gryan@gdssecurity.com>
+Hostile portal attacks have been improved.
+Added autocrack and add functionality to support full EAP authentication.
+No longer kills NetworkManager. Uses nmcli to set interfaces to "unmanaged" instead.
+Added support for indirect wireless pivots (disable's Responder's SMB server so you can run MultiRelay, smbrelayx, etc).
+Added payload_generator script to generate timed Powershell payloads for indirect wireless pivots (note: timed payload is for PoC purposes. If you're doing it for real, use a CobaltStrike beacon, Empire agent, or other respectable implant instead).
+
+0.0.9 - Gabriel Ryan <gryan@gdssecurity.com>
+Added ehdb script for updating and managing eap_user file. 
+
+0.1.0 - Gabriel Ryan <gryan@gdssecurity.com>
+Added major expansion to documentation (README.md).
+
+0.1.1 - Gabriel Ryan <gryan@gdssecurity.com>
+Added support for ESSID cloaking.
+
+0.1.2 - Gabriel Ryan <gryan@gdssecurity.com>
+Code cleanup.
+
+0.1.3 - Gabriel Ryan <gabriel@solstice.me>
+EAPHammer now displays captured MS-CHAPv2 challenge / response pairs in Hashcat format.
+
+0.1.4 - Gabriel Ryan <gabriel@solstice.me>
+Fixed issue where setup script was unable to download rockyou wordlist due to: https://github.com/danielmiessler/SecLists/issues/166
+
+0.1.5 - Gabriel Ryan <gabriel@digitalsilence.com>
+- Fixed an issue where iptables rules were being saved unnecessarily on startup
+- Updated CLI
+- Enhancement: granular configuration and AP management options
+- New feature: manually specify a config file
+- New feature: save config files
+- Enhancement: multiple instances of eaphammer can now be run concurrently
+- New feature: Added 802.11a and 5GHz support
+- New featuer: Added out-of-the-box support for 802.11n
+- Temporary files are now written to tmp dir
+- Removed the web_delivery server since it's not currently being used.
+- Hostapd is no longer started as a daemon process and controlled by core.services. Instead, it is loaded as a library within eaphammer and run in a separate thread (rather than its own child process).  
+- Hostapd itself has been modified to ignore BSS conflicts when operating in 802.11n mode, which is necessary in order to successfully perform evil twin attacks in 802.11n mode (patch heavily derived from Mike Kazantsev's version (github.com/mk-fg)). Future versions will make this a feature that can be enabled or disabled based on user input.
+- Added apache2 as a dependency for Kali / Ubuntu / Debian.
+- Hostapd no longer user conf_manager. Instead, it is managed using the HostapdConfig class found in core/hostapd_config.py. The HostapdConfig class draws values from both the command line interface and settings/core/hostapd.ini. See README.md for details on how this works.
+- The command line interface has been updated to include 802.11n options, as well as both basic and advanced help output.
+- Command line interface has also been moved to a dedicated module found in core.cli.py.
+- Performed some code refactoring
+- Updated README.md
+
+0.4.0 - Gabriel Ryan <gabriel@digitalsilence.com>
+- New feature: password spraying attacks
+
+0.5.0 - Gabriel Ryan <gabriel@digitalsilence.com>
+EAPHammer now uses a local build of libssl that exists independently of the systemwide install. This local version is compiled with support for SSLv3, allowing EAPHammer to be used against legacy clients without compromising the integrity of the attacker's operating system.
+
+0.6.0 - Gabriel Ryan <gabriel@solstice.sh>
+EAPHammer ported to Python 3.
+
+0.7.0 - Gabriel Ryan <gabriel@solstice.sh>
+EAPHammer is now able to import external certificates, generate self-signed and trusted certificates, and load certificates at runtime. 
+
+0.8.0 - Gabriel Ryan <gryan@specterops.io>
+Ported to hostapd 2.8 base.
+
+0.9.0 - Gabriel Ryan <gryan@specterops.io>
+Support for GTC logging added. GTC Downgrade attack implemented by editing .eap_user file.
+
+0.9.1 - Gabriel Ryan <gryan@specterops.io>
+Version string moved to a more sensible location.
+
+1.0.0 - Gabriel Ryan <gryan@specterops.io>
+Support for EAP-MD5,EAP-PEAP/MD5, and EAP-TTLS/MD5 added.
+
+1.1.0 - Gabriel Ryan <gryan@specterops.io>
+Added root check.
+
+1.1.1 - Gabriel Ryan <gryan@specterops.io>
+Fixed index error in autocrack.
+
+1.2.0 - Gabriel Ryan <gryan@specterops.io>
+No longer maintaining a dedicated version of Responder. Instead, relying on
+external dependency.
+
+1.3.0 - Gabriel Ryan <gryan@specterops.io>
+Hostapd now compiled with support for OWE, WPA3, and 802.11ax. However, these protocols have not yet been integrated with the rest of the project.
+
+1.4.0 - Gabriel Ryan <gryan@specterops.io>
+Added support for advanced karma attacks: known beacon (credit: Census Labs) and loud mode (credit: Sensepost). Added support for 802.11w (Protected Management Frames).
+
+1.5.0 - Gabriel Ryan <gryan@specterops.io>
+Added support for rogue AP attacks against networks that use OWE and OWE Transition Mode.
+
+1.6.0 - Gabriel Ryan <gryan@specterops.io>
+Added support for rogue AP attacks using WPA2-PSK (with handshake captures)(credit: Sensepost for original hostapd patch).
+
+1.7.0 - Gabriel Ryan <gryan@specterops.io>
+Added "Troll Defender" option that triggers Windows Defender on nearby Windows
+devices.
+
+1.8.0 - Gabriel Ryan <gryan@specterops.io>
+Improved EAP Downgrades. Users now have greater control over EAP Negotiation process. See [http://solstice.sh/wireless/eaphammer/2019/09/09/eap-downgrade-attacks/](http://solstice.sh/wireless/eaphammer/2019/09/09/eap-downgrade-attacks/) for additional details.
+
+1.8.1 - Gabriel Ryan <gryan@specterops.io>
+Bug fix, resolves #109.
+
+1.9.0 - Gabriel Ryan <gryan@specterops.io>
+Documentation overhauled and moved to Wiki (thanks [FreqyXin](https://twitter.com/FreqyXin)!)
+
+1.9.1 - Gabriel Ryan <gryan@specterops.io>
+Added logo to documentation.
+
+1.10.0 - Gabriel Ryan <gryan@specterops.io>
+Added ssid and mac address level ACLs.
+
+1.11.0 - Gabriel Ryan <gryan@specterops.io>
+Added beacon forger for executing known SSID bursts
+
+1.12.0 - Gabriel Ryan <gryan@specterops.io>
+Added --known-ssids flag that can be used instead of --known-ssids-file flag.
+
+1.12.1 - Gabriel Ryan <gabriel@specterops.io>
+Hostapd ctrl_interface name randomly generated to support multiple concurrent eaphammer instances, given absolute path
+
+1.12.2 - Gabriel Ryan <gabriel@specterops.io>
+Fixed kali-setup file, updated kali-dependencies.txt file
+
+1.12.3 - Gabriel Ryan <gabriel@specterops.io>
+Added official support for Parot OS (Security)
+
+1.13.0 - Gabriel Ryan <gabriel@solstice.sh>
+Revamped captive portal system. Added integrated website cloaner. Added raspbian support.
+
+1.13.0 - Gabriel Ryan <gabriel@solstice.sh>
+Revamped captive portal system. Added integrated website cloaner. Added raspbian support.
+
+1.13.1 - Gabriel Ryan <gabriel@solstice.sh>
+Updated pip.req to reflect changes in 1.13.0 - (Credit goes to Jan Rude (github.com/whoot))
+
+1.13.2 - Gabriel Ryan <gabriel@solstice.sh>
+Resolve issue #142 by updating /src/ap/wpa_auth.c - (Credit goes to github.com/rsrdesarrollo)
+
+1.13.3 - Gabriel Ryan <gabriel@solstice.sh>
+Resolve issue #59 by fixing Python3 unicode bullshit. - (Credit goes to github.com/MarkusKrell)
+
+1.13.4 - Gabriel Ryan <gabriel@solstice.sh>
+Resolve issue #59 by fixing Python3 unicode bullshit.  :D 
+
+1.13.5 - Gabriel Ryan <gabriel@solstice.sh>
+Fixed gevent / python 3.9 related fuckery.
